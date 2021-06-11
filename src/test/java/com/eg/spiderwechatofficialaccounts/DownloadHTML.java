@@ -80,7 +80,7 @@ public class DownloadHTML {
                 FileUtil.copyFile(imageFile, finalImage);
             }
             imageFile.delete();
-            element.attr("src", "../imgs/" + finalImage.getName());
+            element.attr("src", "imgs/" + finalImage.getName());
         }
         FileUtil.writeUtf8String(document.html(), file);
     }
