@@ -38,6 +38,8 @@ public class CrawlOfficialAccount {
         System.out.println("cover = " + cover);
 
         Message message = new Message();
+        message.setBiz(biz);
+        message.setMessageId(messageId);
         message.setInfo(jsonObject);
         messageRepository.save(message);
     }
@@ -45,7 +47,7 @@ public class CrawlOfficialAccount {
     @Test
     void crawl() {
         String biz = "MjM5MjAwODM4MA==";
-        String key = "2a2066ee7128965b57f54f726da9da8e7265ab6fd9486c247267624bceef3cadd4f0d5cf7299726220e51b9e699913545f1b322ce9705fe4692c3bdf79d3213563ee9be17c7ecb3efda68e9f4ae7c8519a982c26edabc08a70e5cba370a718b7df320c371066a5c34a067242e4635acf8e7af0a14ac3f073662d52309e0e1f87";
+        String key = "2a2066ee7128965bd897901503e3a95344789eba9be06b27b75f749d5b35decf98d13a1d35751b329e81e45f03bb80b33c01241dbae41b107d1e403a4f6e84f18e23ccdf26479562a3fe5e02b7b09582a2c74f4a20760bbaac32704082077dd0aad17fa42babc7e1f8e605e9efb84cfa33dc03c8b4d2c5274116297e8d03c494";
 
         JSONObject accountMessages;
         int offset = 0;
