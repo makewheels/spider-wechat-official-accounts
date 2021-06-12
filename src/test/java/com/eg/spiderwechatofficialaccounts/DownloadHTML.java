@@ -91,7 +91,7 @@ public class DownloadHTML {
     }
 
     @Test
-    void crawl() {
+    void downloadHTML() {
         int skip = 0;
         List<Message> messageList;
         do {
