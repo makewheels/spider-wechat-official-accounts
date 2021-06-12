@@ -61,6 +61,7 @@ public class DownloadHTML {
                 .collect(Collectors.toList());
         for (Element element : imgList) {
             String src = element.attr("data-src");
+            System.out.println(src);
             String wx_fmt = UrlQuery.of(src, StandardCharsets.UTF_8).get("wx_fmt").toString();
             String filename = "tmp-" + IdUtil.objectId() + "." + wx_fmt;
             File imageFile = new File(workdir, "htmls/tmp/" + filename);
