@@ -62,7 +62,12 @@ public class DownloadHTML {
         for (Element element : imgList) {
             String src = element.attr("data-src");
             System.out.println(src);
-            String wx_fmt = UrlQuery.of(src, StandardCharsets.UTF_8).get("wx_fmt").toString();
+            String wx_fmt = "";
+            if (src.contains("wx_fmt")) {
+                wx_fmt = UrlQuery.of(src, StandardCharsets.UTF_8).get("wx_fmt").toString();
+            } else {
+                wx_fmt = src.substring(src.lastIndexOf(".") + 1);
+            }
             String filename = "tmp-" + IdUtil.objectId() + "." + wx_fmt;
             File imageFile = new File(workdir, "htmls/tmp/" + filename);
             //确保有图片的文件夹
@@ -71,9 +76,8 @@ public class DownloadHTML {
             //执行下载
             HttpUtil.downloadFile(src, imageFile);
             //按照md5命名
-            String md5 = SecureUtil.md5(imageFile);
-            String extension = FilenameUtils.getExtension(imageFile.getName());
-            String newFilename = md5 + "." + extension;
+            String newFilename = SecureUtil.md5(imageFile)
+                    + "." + FilenameUtils.getExtension(imageFile.getName());
             File finalImage = new File(imageFile.getParentFile().getParentFile()
                     + "/imgs", newFilename);
             //如果不存在，复制过去
