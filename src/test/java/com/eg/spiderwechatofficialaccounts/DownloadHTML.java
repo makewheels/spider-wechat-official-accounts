@@ -65,7 +65,15 @@ public class DownloadHTML {
             String wx_fmt = "";
             if (src.contains("wx_fmt")) {
                 wx_fmt = UrlQuery.of(src, StandardCharsets.UTF_8).get("wx_fmt").toString();
-            } else {
+            } else if (src.contains("/mmbiz_jpg/")) {
+                wx_fmt = "jpeg";
+            } else if (src.contains("/mmbiz_png/")) {
+                wx_fmt = "png";
+            } else if (src.contains("/mmbiz_gif")) {
+                wx_fmt = "gif";
+            } else if (src.contains("/mmbiz_svg")) {
+                wx_fmt = "svg";
+            } else if (src.contains(".")) {
                 wx_fmt = src.substring(src.lastIndexOf(".") + 1);
             }
             String filename = "tmp-" + IdUtil.objectId() + "." + wx_fmt;
